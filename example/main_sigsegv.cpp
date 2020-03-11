@@ -24,6 +24,8 @@ namespace
 
 namespace example_fatal
 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat"
    // on Ubunti this caused get a compiler warning with gcc4.6
    // from gcc 4.7.2 (at least) it causes a crash (as expected)
    // On windows it'll probably crash too.
@@ -35,7 +37,7 @@ namespace example_fatal
       const std::string logging = "logging";
       LOGF(G3LOG_DEBUG, "ILLEGAL PRINTF_SYNTAX EXAMPLE. WILL GENERATE compiler warning.\n\nbadly formatted message:[Printf-type %s is the number 1 for many %s]", logging.c_str());
    }
-
+#pragma GCC diagnostic pop
 
    // The function above 'tryToKillWithIllegalPrintout' IS system / compiler dependent. Older compilers sometimes did NOT generate a SIGSEGV
    // fault as expected by the illegal printf-format usage. just in case we exit by zero division"
@@ -57,7 +59,7 @@ namespace example_fatal
 
 
 
-int main(int argc, char **argv)
+int main(int /*argc*/, char **argv)
 {
    double pi_d = 3.1415926535897932384626433832795;
    float pi_f = 3.1415926535897932384626433832795f;

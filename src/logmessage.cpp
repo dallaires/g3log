@@ -12,11 +12,15 @@
 #include <mutex>
 
 namespace {
+#if defined(G3_LOG_FULL_FILENAME)
+   // Avoid unused warning if G3_LOG_FULL_FILENAME is defined
+#else
    std::string splitFileName(const std::string& str) {
       size_t found;
       found = str.find_last_of("(/\\");
       return str.substr(found + 1);
    }
+#endif
 } // anonymous
 
 

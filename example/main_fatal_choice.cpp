@@ -82,12 +82,15 @@ namespace
       LOG(WARNING) << "Expected to have died by now..., test value: " << test;
    }
 
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat"
    void IllegalPrintf() {
       LOG(G3LOG_DEBUG) << " trigger exit";
       LOG(G3LOG_DEBUG) << "Impending doom due to illeteracy";
       LOGF(INFO, "2nd attempt at ILLEGAL PRINTF_SYNTAX %d EXAMPLE. %s %s", "hello", 1);
       LOG(WARNING) << "Expected to have died by now...";
    }
+#pragma GCC diagnostic pop
 
    void OutOfBoundsArrayIndexing() {
       LOG(G3LOG_DEBUG) << " trigger exit";
@@ -287,7 +290,7 @@ void breakHere() {
 #endif
 }
 
-int main(int argc, char **argv)
+int main(int /*argc*/, char **argv)
 {
    auto worker = g3::LogWorker::createLogWorker();
    auto handle= worker->addDefaultLogger(argv[0], path_to_log_file);

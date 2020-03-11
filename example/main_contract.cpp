@@ -30,7 +30,7 @@ namespace example_fatal
    }
 } // example fatal
 
-int main(int argc, char **argv)
+int main(int /*argc*/, char **argv)
 {
    double pi_d = 3.1415926535897932384626433832795;
    float pi_f = 3.1415926535897932384626433832795f;

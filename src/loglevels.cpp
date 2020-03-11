@@ -127,11 +127,13 @@ namespace g3 {
 #endif
 
 
-   bool logLevel(LEVELS log_level) {
 #ifdef G3_DYNAMIC_LOGGING
+   bool logLevel(LEVELS log_level) {
       int level = log_level.value;
       bool status = internal::g_log_levels[level].status.value();
       return status;
+#else
+   bool logLevel(LEVELS /*log_level*/) {
 #endif
       return true;
    }
